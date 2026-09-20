@@ -44,6 +44,7 @@ async function seed() {
         {
           vehicleType: String,
           vehicleNumber: { type: String, unique: true },
+          vehicleNumberLast4: String,
           blockNo: String,
           houseNo: String,
           name: String,
@@ -58,7 +59,10 @@ async function seed() {
   for (const item of sampleVehicles) {
     const exists = await Vehicle.findOne({ vehicleNumber: item.vehicleNumber });
     if (exists) continue;
-    await Vehicle.create(item);
+    await Vehicle.create({
+      ...item,
+      vehicleNumberLast4: item.vehicleNumber.slice(-4),
+    });
     inserted += 1;
   }
 

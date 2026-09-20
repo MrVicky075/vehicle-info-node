@@ -32,6 +32,9 @@ export async function connectDB(): Promise<typeof mongoose> {
       .connect(MONGODB_URI!, {
         bufferCommands: false,
         dbName: "vehicle_information",
+        maxPoolSize: 10,
+        minPoolSize: 1,
+        serverSelectionTimeoutMS: 5000,
       })
       .then((instance) => instance)
       .catch((error) => {

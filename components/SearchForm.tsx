@@ -38,7 +38,7 @@ export default function SearchForm({
           <input
             id="vehicleNumber"
             type="text"
-            placeholder="GJ01FA0123"
+            placeholder="GJ01FA0123 or last 4 digits"
             value={vehicleNumber}
             onChange={(e) => onVehicleNumberChange(e.target.value)}
             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"

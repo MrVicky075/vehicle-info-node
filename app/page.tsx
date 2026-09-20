@@ -78,7 +78,7 @@ export default function HomePage() {
             Vehicle Information Search
           </h1>
           <p className="mt-2 text-slate-600">
-            Search residential vehicle records by vehicle number or house number.
+            Search by full vehicle number, last 4 digits, or house number.
           </p>
         </div>
 
