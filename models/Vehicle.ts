@@ -55,17 +55,16 @@ const vehicleSchema = new Schema(
   { timestamps: true }
 );
 
-vehicleSchema.pre("validate", function (next) {
+// Mongoose 9: pre hooks no longer take next() — sync/async only
+vehicleSchema.pre("validate", function () {
   if (this.vehicleNumber) {
     this.vehicleNumberLast4 = last4FromVehicleNumber(this.vehicleNumber);
   }
-  next();
 });
 
-vehicleSchema.pre("findOneAndUpdate", function (next) {
+vehicleSchema.pre("findOneAndUpdate", function () {
   const update = this.getUpdate();
   if (!update || Array.isArray(update)) {
-    next();
     return;
   }
 
@@ -83,8 +82,6 @@ vehicleSchema.pre("findOneAndUpdate", function (next) {
       direct.vehicleNumberLast4 = last4;
     }
   }
-
-  next();
 });
 
 vehicleSchema.index({ vehicleNumber: 1 }, { unique: true });
